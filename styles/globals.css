@@ -1,16 +1,96 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+html {
+  height: 100%;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.page {
+  width: 100%;
+  min-height: 100vh;
+  background: #eaeaea;
+  position: absolute;
 }
 
-* {
-  box-sizing: border-box;
+.page-centered {
+  display: flex;
+  justify-content: center;
+}
+
+.page-container {
+  background: white;
+  display: flex;
+  width: 600pt;
+}
+
+.form {
+  width: 300pt;
+  background: #ffffff;
+  padding: 20pt;
+  border-radius: 8pt;
+}
+
+.form-lg {
+  width: 600pt;
+}
+
+.form-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 20pt;
+}
+
+.job-list-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.job-list {
+  width: 600pt;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.job-preview {
+  padding: 10pt 20pt 10pt 20pt;
+  border-bottom: 1px solid #eaeaea;
+  cursor: pointer;
+}
+
+.job-page {
+  width: 600pt;
+  padding: 10pt 20pt 0pt 20pt;
+  background: #ffffff;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+
+  border-radius: 4pt;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20pt;
+}
+
+.user-preview {
+  border-radius: 4pt;
+  padding: 0 4pt 0 4pt;
+  border: 1px solid #eaeaea;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20pt;
 }
