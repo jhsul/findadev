@@ -34,7 +34,29 @@ handler.delete(async (req, res) => {
   }
 
   const delRes = await req.db.collection("jobs").deleteOne({ _id });
+  const userRes = await req.db
+    .collection("users")
+    .updateOne({ username: req.user.username }, { $pull: { ownedJobs: _id } });
   res.status(204).end();
+});
+
+handler.get(async (req, res) => {
+  const {
+    query: { jobId },
+  } = req;
+
+  const _id = ObjectId(jobId);
+  if (!_id) {
+    res.status(400).json({ errorMsg: "Invalid ID" });
+    return;
+  }
+
+  const jobRes = await req.db.collection("jobs").findOne({ _id });
+  if (!jobRes) {
+    res.status(404).end();
+    return;
+  }
+  res.status(200).json(jobRes);
 });
 
 export default handler;

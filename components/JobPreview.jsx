@@ -1,12 +1,9 @@
 import { useUser, useCurrentUser } from "../hooks/user";
+import { useJob } from "../hooks/job";
 import UserPreview from "./UserPreview";
 import { useRouter } from "next/router";
 import Link from "next/link";
 const JobPreview = (props) => {
-  if (!props.job) {
-    return <div>Nothing to see here</div>;
-  }
-
   const router = useRouter();
 
   const owner = useUser(props.job.owner);

@@ -14,8 +14,14 @@ handler.get(async (req, res) => {
     res.status(404).end();
     return;
   }
-  // this is retarded but it must be done
-  res.status(201).json({ user: extractUser({ user: userRes }) });
+  // if you are the user in question, get ALL the data!
+  if (req.user.username !== username) {
+    res.status(201).json({ user: extractUser({ user: userRes }) });
+    return;
+  }
+
+  delete userRes.password;
+  res.status(201).json({ user: userRes });
 });
 
 export default handler;

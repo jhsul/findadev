@@ -75,6 +75,7 @@ export const getServerSideProps = async (context) => {
       jobList: jobsRes.map((job) => {
         return {
           ...job,
+          bids: job.bids.map((bidId) => bidId.toHexString()),
           _id: job._id.toHexString(),
         };
       }),

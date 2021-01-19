@@ -1,6 +1,8 @@
 import nc from "next-connect";
 import all from "../../middlewares/all";
 
+import { ObjectId } from "mongodb";
+
 const handler = nc();
 handler.use(all);
 
@@ -18,12 +20,28 @@ handler.post(async (req, res) => {
 
   const { title, description } = req.body;
 
-  const jobRes = await req.db
-    .collection("jobs")
-    .insertOne({ owner: req.user.username, title, description });
+  const jobRes = await req.db.collection("jobs").insertOne({
+    owner: req.user.username,
+    title,
+    description,
+    status: "open",
+    bids: [],
+  });
 
-  if (!jobRes.insertedId) {
+  if (!jobRes) {
     res.status(500).json({ errorMsg: "Error adding job to database" });
+    return;
+  }
+
+  const userRes = await req.db
+    .collection("users")
+    .updateOne(
+      { username: req.user.username },
+      { $push: { ownedJobs: jobRes.insertedId } }
+    );
+
+  if (!userRes) {
+    res.status(500).json({ errorMsg: "Error updating user profile" });
     return;
   }
   res.status(201).json({ jobId: jobRes.insertedId });

@@ -52,7 +52,14 @@ handler.post(async (req, res) => {
 
   const user = await req.db
     .collection("users")
-    .insertOne({ name, username, email, password: hashedPassword })
+    .insertOne({
+      name,
+      username,
+      email,
+      password: hashedPassword,
+      ownedJobs: [],
+      bids: [],
+    })
     .then(({ ops }) => ops[0]);
 
   req.logIn(user, (err) => {
