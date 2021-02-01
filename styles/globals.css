@@ -4,12 +4,13 @@ html {
 
 .page {
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   background: #eaeaea;
   position: absolute;
 }
 
 .page-centered {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -53,18 +54,14 @@ html {
   display: flex;
   flex-direction: column;
   background: white;
+  padding: 20pt;
+  padding-top: 10pt;
 }
 
 .job-preview {
   padding: 10pt 20pt 10pt 20pt;
   border-bottom: 1px solid #eaeaea;
   cursor: pointer;
-}
-
-.job-page {
-  width: 600pt;
-  padding: 10pt 20pt 0pt 20pt;
-  background: #ffffff;
 }
 
 .pagination {
@@ -80,12 +77,24 @@ html {
 
 .user-preview {
   border-radius: 4pt;
-  padding: 0 4pt 0 4pt;
-  border: 1px solid #eaeaea;
+
+  border: 1px solid lightgray;
   width: fit-content;
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
+}
+.user-preview:hover {
+  background: #eaeaea;
+}
+.usernames {
+  display: flex;
+  flex-direction: column;
+}
+
+.close-text {
+  line-height: 90%;
 }
 
 .landing-page {

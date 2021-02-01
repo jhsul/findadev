@@ -10,6 +10,7 @@ export async function createIndices(db) {
       .createIndex({ expireAt: -1 }, { expireAfterSeconds: 0 }),
     db.collection("jobs").createIndex({ createdAt: -1 }),
     db.collection("users").createIndex({ email: 1 }, { unique: true }),
+    db.collection("bids").createIndex({ jobId: 1 }),
   ]);
   indicesCreated = true;
 }

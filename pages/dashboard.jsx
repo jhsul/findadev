@@ -5,6 +5,8 @@ import { Tab, Tabs } from "react-bootstrap";
 
 import { useCurrentUser } from "../hooks/user";
 import NavigationBar from "../components/NavigationBar";
+import JobPreviewFromID from "../components/JobPreviewFromID";
+import BidPreview from "../components/BidPreview";
 const Dashboard = (props) => {
   const [user, { mutate }] = useCurrentUser();
   const router = useRouter();
@@ -33,14 +35,26 @@ const Dashboard = (props) => {
     <>
       <NavigationBar />
       <div className="page page-centered">
-        <div className="job-page">
-          <h3>Hello, {user ? user.name : "WHO ARE YOU!!"}</h3>
-          <Tabs defaultActiveKey="jobs" id="dashboard-tabs">
-            <Tab eventKey="jobs" title="Your Jobs">
-              {JSON.stringify(state)}
-            </Tab>
-            <Tab eventKey="bids" title="Your Bids"></Tab>
-          </Tabs>
+        <div className="job-list">
+          {state.user ? (
+            <>
+              <h3>Hello, {state.user.name}</h3>
+              <Tabs defaultActiveKey="jobs" id="dashboard-tabs">
+                <Tab eventKey="jobs" title="Your Jobs">
+                  {state.user.ownedJobs.map((jobId) => (
+                    <JobPreviewFromID jobId={jobId} />
+                  ))}
+                </Tab>
+                <Tab eventKey="bids" title="Your Bids">
+                  {state.user.bids.map((bidId) => (
+                    <BidPreview bidId={bidId} />
+                  ))}
+                </Tab>
+              </Tabs>
+            </>
+          ) : (
+            <div>Loading</div>
+          )}
         </div>
       </div>
     </>

@@ -30,12 +30,29 @@ handler.post(async (req, res) => {
     return;
   }
 
+  if (jobRes.status !== "open") {
+    res.status(400).json({ errorMsg: "This job is not currently open" });
+    return;
+  }
+
+  const bidSearchRes = await req.db
+    .collection("bids")
+    .find({ jobId: _id, bidder: req.user.username })
+    .toArray();
+  if (bidSearchRes.length > 0) {
+    res.status(400).json({ errorMsg: "You already bidded on this job!" });
+    return;
+  }
+
+  // ACTUALLY MAKE THE BID
+
   const bidRes = await req.db.collection("bids").insertOne({
     jobId: _id,
     bidder: req.user.username,
     how: req.body.how,
     why: req.body.why,
     price: req.body.price,
+    status: "waiting",
   });
 
   const bidId = bidRes.ops[0]._id;

@@ -29,7 +29,7 @@ const LandingPage = () => {
           text: wordList[state.wordIdx].substring(0, state.charIdx),
         };
       });
-    }, 150);
+    }, 75);
     return () => clearInterval(interval);
   }, []);
 

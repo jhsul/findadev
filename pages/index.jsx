@@ -7,6 +7,9 @@ import { useRouter } from "next/router";
 
 import { useCurrentUser } from "../hooks/user";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { InputGroup, FormControl, Button } from "react-bootstrap";
 //SSR import, not for client
 import { getDb } from "../middlewares/database";
 
@@ -24,6 +27,17 @@ const Index = (props) => {
       {user ? (
         <div className="page page-centered">
           <div className="job-list">
+            <div className="mx-5 my-3">
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>Search</InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl />
+                <InputGroup.Append>
+                  <Button variant="primary">Go</Button>
+                </InputGroup.Append>
+              </InputGroup>
+            </div>
             {props.jobList.map((job) => (
               <JobPreview job={job} key={job._id} />
             ))}

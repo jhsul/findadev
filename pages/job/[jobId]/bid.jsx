@@ -102,7 +102,15 @@ export const getServerSideProps = async (context) => {
   if (!jobRes) {
     return { notFound: true };
   }
-  return { props: { job: { ...jobRes, _id: jobRes._id.toHexString() } } };
+  return {
+    props: {
+      job: {
+        ...jobRes,
+        _id: jobRes._id.toHexString(),
+        bids: jobRes.bids.map((bidId) => bidId.toHexString()),
+      },
+    },
+  };
 };
 
 export default Bid;

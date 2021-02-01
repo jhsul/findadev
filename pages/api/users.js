@@ -59,6 +59,7 @@ handler.post(async (req, res) => {
       password: hashedPassword,
       ownedJobs: [],
       bids: [],
+      devJobs: [],
     })
     .then(({ ops }) => ops[0]);
 
