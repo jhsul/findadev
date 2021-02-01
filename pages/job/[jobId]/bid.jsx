@@ -47,7 +47,7 @@ const Bid = (props) => {
                   required
                   as="textarea"
                   rows={3}
-                  placeholder="I will write a webapp with nextjs and host on vercel."
+                  placeholder="I will write a webapp with nextjs and host on vercel.com"
                   onChange={(e) => setState({ ...state, how: e.target.value })}
                 />
               </Form.Group>
