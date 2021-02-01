@@ -47,7 +47,7 @@ const Bid = (props) => {
                   required
                   as="textarea"
                   rows={3}
-                  placeholder="I will make a nextjs application and host it on AWS Amplify. The data storage will be on MongoDB atlas. I will need 3 months to complete this, and the Amplify/Atlas accounts will require monthly payments on your part"
+                  placeholder="I will write a webapp with nextjs and host on vercel."
                   onChange={(e) => setState({ ...state, how: e.target.value })}
                 />
               </Form.Group>
@@ -60,7 +60,7 @@ const Bid = (props) => {
                   required
                   as="textarea"
                   rows={3}
-                  placeholder="I have 10 PHDs and a purple heart from my service in Vietnam"
+                  placeholder="Include links to previous work!"
                   onChange={(e) => setState({ ...state, why: e.target.value })}
                 />
               </Form.Group>
